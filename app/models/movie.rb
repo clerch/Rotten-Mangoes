@@ -10,11 +10,24 @@ class Movie < ActiveRecord::Base
 
   validates :description, presence: true
 
-  validates :poster_image_url, presence: true
+  validates :poster, presence: true
 
   validates :release_date, presence: true
 
   validate :release_date_is_in_the_past
+
+  mount_uploader :poster, PosterUploader
+
+
+  def review_average
+    if reviews.size == 0
+      return 0
+    else
+      reviews.sum(:rating_out_of_ten)/reviews.size
+    end
+  end
+
+
 
 protected
 
