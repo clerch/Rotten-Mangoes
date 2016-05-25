@@ -1,10 +1,33 @@
 class Admin::UsersController < ApplicationController
 
-before_action :restrict_admin_access
+  before_action :restrict_admin_access
 
   def index
-    @user = User.all
+    @users = User.all.order(:firstname).page params[:page]
   end
+  
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      redirect_to admin_user_path(@user)
+    else 
+      render :edit
+    end
+  end
+
+
+
+
+
 
 
 
@@ -13,7 +36,11 @@ before_action :restrict_admin_access
 # edit 
 # update
 
-
+  def user_params
+    params.require(:user).permit(
+    :firstname, :lastname, :email, :admin
+  )
+  end
 
 
 
