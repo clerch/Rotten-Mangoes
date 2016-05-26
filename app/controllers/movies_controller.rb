@@ -44,6 +44,7 @@ class MoviesController < ApplicationController
 
 
 
+
 protected
 
   def movie_params

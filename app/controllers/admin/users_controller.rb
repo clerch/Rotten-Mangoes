@@ -24,25 +24,10 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-
-
-
-
-
-
-
-# index 
-# show 
-# edit 
-# update
-
   def user_params
     params.require(:user).permit(
     :firstname, :lastname, :email, :admin
   )
   end
-
-
-
 
 end

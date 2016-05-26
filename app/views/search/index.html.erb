@@ -1,11 +1,4 @@
-<h1>Rotten Mangoes</h1>
-  <%= link_to "Submit a movie!", new_movie_path %>
-  <hr>
-
-  
-
-  <hr>
-
+<h1>Search for results</h1>
 
     <% @movies.each do |movie| %>
       <%= link_to image_tag(movie.poster.to_s), movie_path(movie) %>
