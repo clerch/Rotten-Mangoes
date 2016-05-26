@@ -10,16 +10,18 @@ class SearchController < ApplicationController
     # you should use when chaining
     @movies = Movie.all
 
-    if (params[:title].present?) 
-      @movies = @movies.where("title LIKE ?", params[:title])
+    if (params[:search].present?) 
+      @movies = @movies.where("title LIKE ? or director LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     end
 
-    if (params[:director].present?) 
-      @movies = @movies.where("title LIKE ?", params[:director])
-    end
+    # if (params[:director].present?) 
+    #   @movies = @movies.where("title LIKE ?", params[:director])
+    # end
 
     if (params[:runtime_in_minutes].present?) 
       case params[:runtime_in_minutes]
+      when "all"
+        @movies
       when "under_90_minutes"
         @movies = @movies.where("runtime_in_minutes < 90")
       when "between_90_and_120_minutes"

@@ -23,9 +23,8 @@
 </form> -->
 
 <%= form_tag search_index_path, method: "GET" do %>
-<%= text_field_tag :title %>
-<%= text_field_tag :director %>
-<%= select_tag :runtime_in_minutes, options_for_select([['Under 90 minutes',"under_90_minutes"],['Between 90 and 120 minutes',"between_90_and_120_minutes"],['Over 120 minutes', "over_120_minutes"]]) %>
+<%= text_field_tag :search %>
+<%= select_tag :runtime_in_minutes, options_for_select([['All',"all"],['Under 90 minutes',"under_90_minutes"],['Between 90 and 120 minutes',"between_90_and_120_minutes"],['Over 120 minutes', "over_120_minutes"]],1) %>
 <%= submit_tag 'Search' %>
 <% end %>
 
